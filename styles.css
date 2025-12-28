@@ -1,0 +1,88 @@
+/* Visit Avigliano - Custom Styles */
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #E8E2D9; }
+::-webkit-scrollbar-thumb { background: #C4775C; border-radius: 4px; }
+
+.hide-scroll::-webkit-scrollbar { display: none; }
+.hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+::selection { background: #C4775C; color: white; }
+
+*:focus-visible { outline: 2px solid #B8965A; outline-offset: 2px; }
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
+    background: #1A3D2E; color: white; padding: 1rem 2rem; z-index: 9999;
+    border-radius: 0 0 0.5rem 0.5rem; transition: top 0.3s;
+}
+.skip-link:focus { top: 0; }
+
+/* Reveal animations */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+
+/* Image zoom */
+.zoom-img { transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.group:hover .zoom-img { transform: scale(1.08); }
+
+/* Backgrounds */
+.bg-forest-gradient { background: linear-gradient(135deg, #1A3D2E 0%, #0F2920 100%); }
+
+.glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
+
+.noise::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.03; pointer-events: none; z-index: 1;
+}
+
+/* Card effects */
+.card-lift { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.card-lift:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+
+/* Underline animation */
+.underline-anim { position: relative; }
+.underline-anim::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+    background: currentColor; transition: width 0.3s ease;
+}
+.underline-anim:hover::after { width: 100%; }
+
+/* Line decoration */
+.line-decor::before {
+    content: ''; display: inline-block; width: 40px; height: 1px;
+    background: #B8965A; margin-right: 1rem; vertical-align: middle;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+}
+
+/* Event card styles */
+.event-card {
+    @apply relative rounded-2xl overflow-hidden cursor-pointer border border-white/20 transition-all duration-500;
+    background: rgba(255,255,255,0.05);
+}
+.event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+    border-color: #B8965A;
+}
+
+/* Filter button styles */
+.filter-btn {
+    @apply px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border transition-all;
+}
+.filter-btn.active {
+    @apply bg-white text-forest border-white;
+}
+.filter-btn:not(.active) {
+    @apply bg-transparent text-white/60 border-white/20 hover:border-white hover:text-white;
+}
